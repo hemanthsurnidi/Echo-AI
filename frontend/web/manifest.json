@@ -1,0 +1,35 @@
+{
+    "name": "Echo AI – Communication Intelligence Platform",
+    "short_name": "Echo AI",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#0a0b10",
+    "theme_color": "#8b5cf6",
+    "description": "Speak. Listen. Improve. Progressive Web App for Communication Speech Analytics.",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-maskable-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/Icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}

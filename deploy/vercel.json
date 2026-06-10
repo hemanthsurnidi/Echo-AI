@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "cleanUrls": true,
+  "framework": "flutter",
+  "routes": [
+    { "src": "/web/manifest.json", "dest": "/web/manifest.json" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
+}

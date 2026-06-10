@@ -1,0 +1,32 @@
+name: echo_ai
+description: Echo AI - Communication Intelligence Platform.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.2.1
+  record: ^5.1.2
+  audioplayers: ^6.0.0
+  fl_chart: ^0.68.0
+  speech_to_text: ^6.6.0
+  intl: ^0.19.0
+  uuid: ^4.3.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  fonts:
+    - family: Outfit
+      fonts:
+        - asset: https://fonts.gstatic.com/s/outfit/v11/F3u1QvKLQ-w28dKp73q2Fw.woff2
+    - family: PlusJakartaSans
+      fonts:
+        - asset: https://fonts.gstatic.com/s/plusjakartasans/v8/L0x5DFM5urV278c6520qEt-zBYyUbEHvNDG_bF4N.woff2

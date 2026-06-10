@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: echo-ai-backend
+    env: python
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: python backend/run.py
+    envVars:
+      - key: PORT
+        value: 8000
+      - key: PYTHON_VERSION
+        value: 3.11.0
