@@ -77,6 +77,10 @@ HTML_CONTENT = """<!DOCTYPE html>
             -webkit-text-size-adjust: 100%;
         }
 
+        html, body {
+            max-width: 100%;
+        }
+
         body {
             background-color: var(--bg-primary);
             color: var(--text-primary);
@@ -89,7 +93,6 @@ HTML_CONTENT = """<!DOCTYPE html>
             background-image: 
                 radial-gradient(circle at 10% 20%, rgba(139, 92, 246, 0.08) 0%, transparent 40%),
                 radial-gradient(circle at 90% 80%, rgba(20, 184, 166, 0.08) 0%, transparent 40%);
-            background-attachment: fixed;
             touch-action: pan-y;
         }
 
@@ -104,6 +107,9 @@ HTML_CONTENT = """<!DOCTYPE html>
             border-radius: 20px;
             padding: 20px;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+            overflow: hidden;  /* prevents inner content from overflowing card boundaries */
+            min-width: 0;      /* fixes grid child overflow in CSS grid */
+            box-sizing: border-box;
         }
 
         /* ==============================
@@ -500,12 +506,15 @@ HTML_CONTENT = """<!DOCTYPE html>
            RECORDER CONTROLS
         ============================== */
         .recorder-controls {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 10px;
             margin-top: 8px;
-            flex-wrap: wrap;
-            justify-content: center;
             width: 100%;
+        }
+        /* When pause button appears, 3-col */
+        .recorder-controls.has-pause {
+            grid-template-columns: 1fr 1fr 1fr;
         }
 
         .btn-control {
@@ -514,16 +523,18 @@ HTML_CONTENT = """<!DOCTYPE html>
             color: var(--text-primary);
             font-family: var(--font-family);
             font-weight: 600;
-            padding: 11px 18px;
+            padding: 11px 14px;
             border-radius: 12px;
             cursor: pointer;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 7px;
             font-size: 13px;
             transition: all 0.2s;
             touch-action: manipulation;
             min-height: 44px;
+            width: 100%;
         }
         .btn-control:hover { background: var(--border-color); }
         .btn-control:active { transform: scale(0.95); }
@@ -542,14 +553,15 @@ HTML_CONTENT = """<!DOCTYPE html>
         }
         .effects-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 8px;
+            width: 100%;
         }
         .effect-card {
             background: var(--bg-secondary);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 12px 8px;
+            padding: 12px 4px;
             text-align: center;
             cursor: pointer;
             display: flex;
@@ -560,10 +572,12 @@ HTML_CONTENT = """<!DOCTYPE html>
             touch-action: manipulation;
             min-height: 64px;
             justify-content: center;
+            min-width: 0;
+            overflow: hidden;
         }
         .effect-card:active { transform: scale(0.95); }
-        .effect-card i { font-size: 16px; color: var(--text-secondary); }
-        .effect-card span { font-size: 10px; font-weight: 700; color: var(--text-secondary); }
+        .effect-card i { font-size: 15px; color: var(--text-secondary); flex-shrink: 0; }
+        .effect-card span { font-size: 10px; font-weight: 700; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; }
         .effect-card.active { border-color: var(--primary); background: var(--primary-glow); }
         .effect-card.active i { color: var(--primary); }
         .effect-card.active span { color: var(--text-primary); }
@@ -876,9 +890,9 @@ HTML_CONTENT = """<!DOCTYPE html>
         @media (max-width: 600px) {
             main {
                 grid-template-columns: 1fr;
-                padding: 14px;
-                padding-bottom: calc(var(--nav-h) + var(--safe-bottom) + 14px);
-                gap: 14px;
+                padding: 10px;
+                padding-bottom: calc(var(--nav-h) + var(--safe-bottom) + 10px);
+                gap: 10px;
             }
 
             .mobile-bottom-nav { display: flex; }
@@ -890,21 +904,21 @@ HTML_CONTENT = """<!DOCTYPE html>
             .workspace-panel { display: flex; }
             .workspace-panel.mobile-hidden { display: none; }
 
-            /* Glass card tighter on mobile */
-            .glass-card { padding: 14px; border-radius: 16px; }
+            /* Glass card tighter on mobile - CRITICAL: keep overflow:hidden */
+            .glass-card { padding: 12px; border-radius: 16px; }
 
             /* Timer smaller on phone */
-            .timer-display { font-size: 32px; }
+            .timer-display { font-size: 30px; }
 
             /* Mic slightly smaller */
-            .mic-wrapper { width: 120px; height: 120px; }
-            .mic-button { width: 90px; height: 90px; font-size: 30px; }
+            .mic-wrapper { width: 118px; height: 118px; }
+            .mic-button { width: 88px; height: 88px; font-size: 28px; }
 
             /* Stat grid: 2x2 */
-            .dashboard-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            .stat-card { padding: 12px; gap: 10px; }
-            .stat-icon { width: 38px; height: 38px; font-size: 15px; border-radius: 10px; }
-            .stat-info p { font-size: 16px; }
+            .dashboard-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+            .stat-card { padding: 12px; gap: 8px; }
+            .stat-icon { width: 36px; height: 36px; font-size: 14px; border-radius: 10px; }
+            .stat-info p { font-size: 15px; }
             .stat-info h4 { font-size: 9px; }
 
             /* Analysis: stack on mobile */
@@ -912,37 +926,48 @@ HTML_CONTENT = """<!DOCTYPE html>
             .transcript-text { height: 100px; }
             .analysis-header { flex-wrap: wrap; }
 
-            /* Effects: 3-col stays fine on mobile */
-            .effects-grid { grid-template-columns: repeat(3, 1fr); gap: 7px; }
-            .effect-card { padding: 10px 6px; min-height: 58px; }
-            .effect-card i { font-size: 14px; }
+            /* Effects: 3-col on mobile — use minmax(0,1fr) to prevent overflow */
+            .effects-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+            .effect-card { padding: 10px 2px; min-height: 56px; }
+            .effect-card i { font-size: 13px; }
+            .effect-card span { font-size: 9px; }
 
-            /* Recorder controls full width on mobile */
-            .recorder-controls { gap: 8px; }
-            .btn-control { padding: 10px 14px; font-size: 12px; flex: 1; justify-content: center; }
+            /* Recorder controls: equal 2-col grid */
+            .recorder-controls { gap: 8px; grid-template-columns: 1fr 1fr; }
+            .btn-control { padding: 10px 8px; font-size: 12px; }
 
             .history-list { max-height: 220px; }
 
-            .recording-container { padding: 20px 12px 16px; }
+            /* Less vertical padding in recorder container */
+            .recording-container { padding: 16px 8px 12px; }
 
-            .mode-btn { font-size: 12px; padding: 10px 6px; gap: 5px; }
-            .mode-btn i { font-size: 13px; }
+            .mode-btn { font-size: 12px; padding: 10px 4px; gap: 4px; }
+            .mode-btn i { font-size: 12px; }
 
             .analysis-title h3 { font-size: 15px; }
+
+            /* Make workspace panel fill visible area better */
+            .workspace-panel {
+                min-height: calc(100dvh - var(--header-h) - var(--nav-h) - var(--safe-bottom) - 20px);
+                justify-content: flex-start;
+            }
         }
 
         /* ==============================
            VERY SMALL PHONES (≤ 380px)
         ============================== */
         @media (max-width: 380px) {
-            .timer-display { font-size: 28px; }
-            .mic-wrapper { width: 108px; height: 108px; }
-            .mic-button { width: 82px; height: 82px; font-size: 26px; }
-            .dashboard-grid { gap: 8px; }
-            .stat-info p { font-size: 15px; }
-            .effects-grid { gap: 6px; }
-            .effect-card { border-radius: 10px; }
-            .glass-card { padding: 12px; border-radius: 14px; }
+            main { padding: 8px; gap: 8px; }
+            .timer-display { font-size: 26px; }
+            .mic-wrapper { width: 106px; height: 106px; }
+            .mic-button { width: 80px; height: 80px; font-size: 24px; }
+            .dashboard-grid { gap: 7px; }
+            .stat-info p { font-size: 14px; }
+            .effects-grid { gap: 5px; }
+            .effect-card { border-radius: 10px; padding: 8px 2px; }
+            .glass-card { padding: 10px; border-radius: 14px; }
+            .mode-btn { font-size: 11px; }
+            .recording-container { padding: 12px 6px 10px; }
         }
 
         /* ==============================
@@ -1496,12 +1521,20 @@ HTML_CONTENT = """<!DOCTYPE html>
             const btnPause = document.getElementById("btn-record-pause");
             const btnStart = document.getElementById("btn-record-start");
             const btnStop = document.getElementById("btn-record-stop");
+            const controls = document.getElementById("manual-controls");
 
             btnStart.disabled = isRecording;
             btnStop.disabled = !isRecording;
             btnPause.disabled = !isRecording;
             btnPause.style.display = isRecording ? "flex" : "none";
             btnPause.innerHTML = `<i class="fa-solid fa-${isPaused ? 'play' : 'pause'}"></i> ${isPaused ? 'Resume' : 'Pause'}`;
+
+            // Switch recorder-controls grid to 3-col when pause button shows
+            if (isRecording) {
+                controls.classList.add("has-pause");
+            } else {
+                controls.classList.remove("has-pause");
+            }
 
             if (isRecording && !isPaused) {
                 btnStart.classList.add("active-record");
