@@ -478,15 +478,17 @@ HTML_CONTENT = """<!DOCTYPE html>
             letter-spacing: 1px; margin-bottom: 8px; display: block;
         }
         .style-grid {
-            display: flex; gap: 6px;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: flex; gap: 4px;
             padding-bottom: 4px;
+            justify-content: space-between;
         }
         .style-item {
+            flex: 1;
+            text-align: center;
+            min-width: 0;
+            padding: 7px 4px;
             background: var(--bg-secondary);
             border: 1px solid var(--border-color);
-            padding: 7px 12px;
             border-radius: 8px;
             font-size: 11px;
             color: var(--text-secondary);
@@ -1160,7 +1162,6 @@ HTML_CONTENT = """<!DOCTYPE html>
                             <div class="style-item active" data-anim="pulse">Traditional</div>
                             <div class="style-item" data-anim="doraemon">Doraemon</div>
                             <div class="style-item" data-anim="fan">Fan</div>
-                            <div class="style-item" data-anim="tom">Tom Cat</div>
                             <div class="style-item" data-anim="emoji">Emoji</div>
                         </div>
                     </div>
@@ -1247,28 +1248,6 @@ HTML_CONTENT = """<!DOCTYPE html>
                 </div>
             </div>
 
-            <!-- History & Chart Tabs -->
-            <div class="glass-card">
-                <div class="tabs-header">
-                    <span class="tab-link active" data-tab="tab-history">Session History</span>
-                    <span class="tab-link" data-tab="tab-progress">Intelligence Progress</span>
-                </div>
-
-                <div class="tab-content active" id="tab-history">
-                    <div class="history-list" id="history-list-container">
-                        <div style="text-align:center;padding:20px;color:var(--text-secondary);">
-                            No sessions found.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tab-content" id="tab-progress">
-                    <div class="chart-container">
-                        <svg class="chart-svg" id="progress-chart-svg" viewBox="0 0 500 200" preserveAspectRatio="none"></svg>
-                    </div>
-                </div>
-            </div>
-
             <!-- Session Intelligence Detail -->
             <div class="glass-card analysis-detail">
                 <div class="analysis-header">
@@ -1283,8 +1262,8 @@ HTML_CONTENT = """<!DOCTYPE html>
 
                 <!-- Empty state -->
                 <div id="detail-empty-state">
-                    <div class="empty-state-block">
-                        <i class="fa-solid fa-microchip-ai"></i>
+                    <div class="empty-state-block" style="padding: 10px 16px;">
+                        <i class="fa-solid fa-microchip-ai" style="font-size: 24px;"></i>
                         <p>No session loaded yet.<br>Record speech or select a session from history.</p>
                     </div>
                 </div>
@@ -1319,6 +1298,28 @@ HTML_CONTENT = """<!DOCTYPE html>
                             <span class="metric-label">Continuity</span>
                             <span class="metric-value" id="detail-active-ratio">0%</span>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- History & Chart Tabs -->
+            <div class="glass-card">
+                <div class="tabs-header">
+                    <span class="tab-link active" data-tab="tab-history">Session History</span>
+                    <span class="tab-link" data-tab="tab-progress">Intelligence Progress</span>
+                </div>
+
+                <div class="tab-content active" id="tab-history">
+                    <div class="history-list" id="history-list-container">
+                        <div style="text-align:center;padding:20px;color:var(--text-secondary);">
+                            No sessions found.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="tab-progress">
+                    <div class="chart-container">
+                        <svg class="chart-svg" id="progress-chart-svg" viewBox="0 0 500 200" preserveAspectRatio="none"></svg>
                     </div>
                 </div>
             </div>
