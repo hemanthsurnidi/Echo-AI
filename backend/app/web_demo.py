@@ -924,12 +924,20 @@ HTML_CONTENT = """<!DOCTYPE html>
             
             .style-selector { margin-top: 2px; }
 
-            /* Stat grid: 2x2 */
-            .dashboard-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
-            .stat-card { padding: 8px; gap: 6px; min-height: 40px; }
+            /* Stat grid: horizontal scroll */
+            .dashboard-grid { 
+                display: flex; flex-wrap: nowrap; overflow-x: auto; 
+                gap: 8px; padding-bottom: 4px; scrollbar-width: none;
+                -webkit-overflow-scrolling: touch;
+            }
+            .dashboard-grid::-webkit-scrollbar { display: none; }
+            .stat-card { padding: 8px; gap: 8px; min-width: 130px; flex-shrink: 0; min-height: 40px; }
             .stat-icon { width: 28px; height: 28px; font-size: 12px; border-radius: 8px; }
             .stat-info p { font-size: 14px; }
             .stat-info h4 { font-size: 8px; }
+            
+            .analysis-detail { gap: 6px; }
+            .analysis-header { padding-bottom: 4px; gap: 6px; }
 
             /* Analysis: stack on mobile */
             .analysis-content { grid-template-columns: 1fr; }
@@ -976,8 +984,8 @@ HTML_CONTENT = """<!DOCTYPE html>
             .timer-display { font-size: 18px; }
             .mic-wrapper { width: 64px; height: 64px; }
             .mic-button { width: 46px; height: 46px; font-size: 18px; }
-            .dashboard-grid { gap: 4px; }
-            .stat-card { padding: 6px; gap: 4px; }
+            .dashboard-grid { gap: 6px; }
+            .stat-card { padding: 6px; gap: 6px; min-width: 110px; }
             .stat-icon { width: 24px; height: 24px; font-size: 10px; }
             .stat-info p { font-size: 12px; }
             .stat-info h4 { font-size: 8px; }
