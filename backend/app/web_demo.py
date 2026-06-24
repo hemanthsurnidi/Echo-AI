@@ -897,7 +897,7 @@ HTML_CONTENT = """<!DOCTYPE html>
                 box-sizing: border-box;
                 overflow-x: hidden;
                 padding: 10px;
-                padding-bottom: calc(var(--nav-h) + var(--safe-bottom) + 10px);
+                padding-bottom: calc(var(--nav-h) + var(--safe-bottom) + 80px);
                 gap: 10px;
             }
 
@@ -945,7 +945,7 @@ HTML_CONTENT = """<!DOCTYPE html>
             .recorder-controls { gap: 8px; grid-template-columns: 1fr 1fr; }
             .btn-control { padding: 10px 8px; font-size: 12px; }
 
-            .history-list { max-height: 220px; }
+            .history-list { max-height: 180px; }
 
             /* Less vertical padding in recorder container */
             .recording-container { padding: 12px 6px 8px; gap: 8px; }
@@ -954,10 +954,15 @@ HTML_CONTENT = """<!DOCTYPE html>
             .mode-btn i { font-size: 12px; }
 
             .analysis-title h3 { font-size: 15px; }
+            
+            .chart-container { height: 160px; }
+            
+            .audio-player-card { margin-top: 4px; padding: 6px 10px; }
+            .audio-player-card button { width: 30px; height: 30px; }
 
             /* Make workspace panel fill visible area better */
             .workspace-panel {
-                min-height: calc(100dvh - var(--header-h) - var(--nav-h) - var(--safe-bottom) - 20px);
+                min-height: calc(100dvh - var(--header-h) - var(--nav-h) - var(--safe-bottom) - 10px);
                 justify-content: flex-start;
             }
         }
@@ -1711,11 +1716,6 @@ HTML_CONTENT = """<!DOCTYPE html>
                 statusText.textContent = "Analysis Complete";
 
                 loadSessionDetail(session);
-
-                // On mobile, switch to dashboard to show results
-                if (window.innerWidth <= 900) {
-                    setMobilePanel("dashboard");
-                }
 
                 if (currentMode === "echo") {
                     await playVoiceEffect("original");
