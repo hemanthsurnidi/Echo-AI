@@ -479,11 +479,10 @@ HTML_CONTENT = """<!DOCTYPE html>
         }
         .style-grid {
             display: flex; gap: 6px;
-            overflow-x: auto; padding-bottom: 6px;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding-bottom: 4px;
         }
-        .style-grid::-webkit-scrollbar { display: none; }
         .style-item {
             background: var(--bg-secondary);
             border: 1px solid var(--border-color);
@@ -1248,6 +1247,28 @@ HTML_CONTENT = """<!DOCTYPE html>
                 </div>
             </div>
 
+            <!-- History & Chart Tabs -->
+            <div class="glass-card">
+                <div class="tabs-header">
+                    <span class="tab-link active" data-tab="tab-history">Session History</span>
+                    <span class="tab-link" data-tab="tab-progress">Intelligence Progress</span>
+                </div>
+
+                <div class="tab-content active" id="tab-history">
+                    <div class="history-list" id="history-list-container">
+                        <div style="text-align:center;padding:20px;color:var(--text-secondary);">
+                            No sessions found.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="tab-progress">
+                    <div class="chart-container">
+                        <svg class="chart-svg" id="progress-chart-svg" viewBox="0 0 500 200" preserveAspectRatio="none"></svg>
+                    </div>
+                </div>
+            </div>
+
             <!-- Session Intelligence Detail -->
             <div class="glass-card analysis-detail">
                 <div class="analysis-header">
@@ -1298,28 +1319,6 @@ HTML_CONTENT = """<!DOCTYPE html>
                             <span class="metric-label">Continuity</span>
                             <span class="metric-value" id="detail-active-ratio">0%</span>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- History & Chart Tabs -->
-            <div class="glass-card">
-                <div class="tabs-header">
-                    <span class="tab-link active" data-tab="tab-history">Session History</span>
-                    <span class="tab-link" data-tab="tab-progress">Intelligence Progress</span>
-                </div>
-
-                <div class="tab-content active" id="tab-history">
-                    <div class="history-list" id="history-list-container">
-                        <div style="text-align:center;padding:20px;color:var(--text-secondary);">
-                            No sessions found.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tab-content" id="tab-progress">
-                    <div class="chart-container">
-                        <svg class="chart-svg" id="progress-chart-svg" viewBox="0 0 500 200" preserveAspectRatio="none"></svg>
                     </div>
                 </div>
             </div>
