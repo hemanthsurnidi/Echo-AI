@@ -905,9 +905,9 @@ HTML_CONTENT = """<!DOCTYPE html>
             footer { display: none; }
 
             /* Hide non-active panels on mobile */
-            .analytics-panel { display: none; }
+            .analytics-panel { display: none; margin-bottom: 120px; }
             .analytics-panel.mobile-active { display: flex; }
-            .workspace-panel { display: flex; gap: 10px; }
+            .workspace-panel { display: flex; gap: 10px; margin-bottom: 120px; }
             .workspace-panel.mobile-hidden { display: none; }
 
             /* Glass card tighter on mobile - CRITICAL: keep overflow:hidden */
@@ -971,17 +971,19 @@ HTML_CONTENT = """<!DOCTYPE html>
            VERY SMALL PHONES (≤ 380px)
         ============================== */
         @media (max-width: 380px) {
-            main { padding: 8px; gap: 8px; }
-            .timer-display { font-size: 26px; }
-            .mic-wrapper { width: 106px; height: 106px; }
-            .mic-button { width: 80px; height: 80px; font-size: 24px; }
-            .dashboard-grid { gap: 7px; }
-            .stat-info p { font-size: 14px; }
-            .effects-grid { gap: 5px; }
-            .effect-card { border-radius: 10px; padding: 8px 2px; }
-            .glass-card { padding: 10px; border-radius: 14px; }
-            .mode-btn { font-size: 11px; }
-            .recording-container { padding: 12px 6px 10px; }
+            main { padding: 8px; gap: 8px; padding-bottom: calc(var(--nav-h) + var(--safe-bottom) + 140px); }
+            .timer-display { font-size: 18px; }
+            .mic-wrapper { width: 64px; height: 64px; }
+            .mic-button { width: 46px; height: 46px; font-size: 18px; }
+            .dashboard-grid { gap: 6px; }
+            .stat-info p { font-size: 13px; }
+            .effects-grid { gap: 4px; }
+            .effect-card { border-radius: 8px; padding: 4px 2px; min-height: 42px; }
+            .glass-card { padding: 8px; border-radius: 12px; }
+            .mode-btn { font-size: 10px; }
+            .recording-container { padding: 8px 4px; }
+            .chart-container { height: 130px; }
+            .history-list { max-height: 140px; }
         }
 
         /* ==============================
