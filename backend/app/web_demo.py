@@ -263,6 +263,8 @@ HTML_CONTENT = """<!DOCTYPE html>
             grid-template-columns: 1.2fr 1.8fr;
             gap: 24px;
             align-items: start;
+            box-sizing: border-box;
+            overflow-x: hidden;
         }
 
         /* ==============================
@@ -469,7 +471,7 @@ HTML_CONTENT = """<!DOCTYPE html>
         /* ==============================
            STYLE SELECTOR (ANIMATION CHIPS)
         ============================== */
-        .style-selector { width: 100%; margin-top: 10px; }
+        .style-selector { width: 100%; min-width: 0; margin-top: 10px; overflow: hidden; }
         .style-selector label {
             font-size: 11px; font-weight: 700;
             color: var(--text-secondary); text-transform: uppercase;
@@ -889,7 +891,11 @@ HTML_CONTENT = """<!DOCTYPE html>
         ============================== */
         @media (max-width: 600px) {
             main {
-                grid-template-columns: 1fr;
+                grid-template-columns: minmax(0, 1fr);
+                width: 100%;
+                max-width: 100vw;
+                box-sizing: border-box;
+                overflow-x: hidden;
                 padding: 10px;
                 padding-bottom: calc(var(--nav-h) + var(--safe-bottom) + 10px);
                 gap: 10px;
@@ -901,18 +907,21 @@ HTML_CONTENT = """<!DOCTYPE html>
             /* Hide non-active panels on mobile */
             .analytics-panel { display: none; }
             .analytics-panel.mobile-active { display: flex; }
-            .workspace-panel { display: flex; }
+            .workspace-panel { display: flex; gap: 10px; }
             .workspace-panel.mobile-hidden { display: none; }
 
             /* Glass card tighter on mobile - CRITICAL: keep overflow:hidden */
-            .glass-card { padding: 12px; border-radius: 16px; }
+            .glass-card { padding: 10px; border-radius: 12px; min-width: 0; }
 
             /* Timer smaller on phone */
-            .timer-display { font-size: 30px; }
+            .timer-display { font-size: 24px; }
+            .recording-status-text { margin-bottom: 8px; height: 14px; font-size: 10px; }
 
             /* Mic slightly smaller */
-            .mic-wrapper { width: 118px; height: 118px; }
-            .mic-button { width: 88px; height: 88px; font-size: 28px; }
+            .mic-wrapper { width: 90px; height: 90px; margin-bottom: 8px; }
+            .mic-button { width: 70px; height: 70px; font-size: 24px; }
+            
+            .style-selector { margin-top: 4px; }
 
             /* Stat grid: 2x2 */
             .dashboard-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
@@ -927,10 +936,10 @@ HTML_CONTENT = """<!DOCTYPE html>
             .analysis-header { flex-wrap: wrap; }
 
             /* Effects: 3-col on mobile — use minmax(0,1fr) to prevent overflow */
-            .effects-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
-            .effect-card { padding: 10px 2px; min-height: 56px; }
-            .effect-card i { font-size: 13px; }
-            .effect-card span { font-size: 9px; }
+            .effects-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; }
+            .effect-card { padding: 6px 2px; min-height: 48px; }
+            .effect-card i { font-size: 11px; }
+            .effect-card span { font-size: 8px; }
 
             /* Recorder controls: equal 2-col grid */
             .recorder-controls { gap: 8px; grid-template-columns: 1fr 1fr; }
@@ -939,7 +948,7 @@ HTML_CONTENT = """<!DOCTYPE html>
             .history-list { max-height: 220px; }
 
             /* Less vertical padding in recorder container */
-            .recording-container { padding: 16px 8px 12px; }
+            .recording-container { padding: 12px 6px 8px; gap: 8px; }
 
             .mode-btn { font-size: 12px; padding: 10px 4px; gap: 4px; }
             .mode-btn i { font-size: 12px; }
