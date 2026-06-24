@@ -897,7 +897,7 @@ HTML_CONTENT = """<!DOCTYPE html>
                 box-sizing: border-box;
                 overflow-x: hidden;
                 padding: 10px;
-                padding-bottom: calc(var(--nav-h) + var(--safe-bottom) + 80px);
+                padding-bottom: calc(var(--nav-h) + var(--safe-bottom) + 120px);
                 gap: 10px;
             }
 
@@ -914,14 +914,14 @@ HTML_CONTENT = """<!DOCTYPE html>
             .glass-card { padding: 10px; border-radius: 12px; min-width: 0; }
 
             /* Timer smaller on phone */
-            .timer-display { font-size: 24px; }
-            .recording-status-text { margin-bottom: 8px; height: 14px; font-size: 10px; }
+            .timer-display { font-size: 20px; }
+            .recording-status-text { margin-bottom: 4px; height: 14px; font-size: 10px; }
 
             /* Mic slightly smaller */
-            .mic-wrapper { width: 90px; height: 90px; margin-bottom: 8px; }
-            .mic-button { width: 70px; height: 70px; font-size: 24px; }
+            .mic-wrapper { width: 74px; height: 74px; margin-bottom: 4px; }
+            .mic-button { width: 54px; height: 54px; font-size: 20px; }
             
-            .style-selector { margin-top: 4px; }
+            .style-selector { margin-top: 2px; }
 
             /* Stat grid: 2x2 */
             .dashboard-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
@@ -942,8 +942,8 @@ HTML_CONTENT = """<!DOCTYPE html>
             .effect-card span { font-size: 8px; }
 
             /* Recorder controls: equal 2-col grid */
-            .recorder-controls { gap: 8px; grid-template-columns: 1fr 1fr; }
-            .btn-control { padding: 10px 8px; font-size: 12px; }
+            .recorder-controls { gap: 6px; grid-template-columns: 1fr 1fr; }
+            .btn-control { padding: 8px 4px; font-size: 11px; min-height: 38px; }
 
             .history-list { max-height: 180px; }
 
@@ -955,10 +955,10 @@ HTML_CONTENT = """<!DOCTYPE html>
 
             .analysis-title h3 { font-size: 15px; }
             
-            .chart-container { height: 160px; }
+            .chart-container { height: 150px; }
             
-            .audio-player-card { margin-top: 4px; padding: 6px 10px; }
-            .audio-player-card button { width: 30px; height: 30px; }
+            .audio-player-card { margin-top: 2px; padding: 4px 8px; gap: 6px; }
+            .audio-player-card button { width: 26px; height: 26px; font-size: 10px; }
 
             /* Make workspace panel fill visible area better */
             .workspace-panel {
