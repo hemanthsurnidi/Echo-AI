@@ -925,11 +925,11 @@ HTML_CONTENT = """<!DOCTYPE html>
             .style-selector { margin-top: 2px; }
 
             /* Stat grid: 2x2 */
-            .dashboard-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-            .stat-card { padding: 12px; gap: 8px; }
-            .stat-icon { width: 36px; height: 36px; font-size: 14px; border-radius: 10px; }
-            .stat-info p { font-size: 15px; }
-            .stat-info h4 { font-size: 9px; }
+            .dashboard-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+            .stat-card { padding: 8px; gap: 6px; min-height: 40px; }
+            .stat-icon { width: 28px; height: 28px; font-size: 12px; border-radius: 8px; }
+            .stat-info p { font-size: 14px; }
+            .stat-info h4 { font-size: 8px; }
 
             /* Analysis: stack on mobile */
             .analysis-content { grid-template-columns: 1fr; }
@@ -976,8 +976,11 @@ HTML_CONTENT = """<!DOCTYPE html>
             .timer-display { font-size: 18px; }
             .mic-wrapper { width: 64px; height: 64px; }
             .mic-button { width: 46px; height: 46px; font-size: 18px; }
-            .dashboard-grid { gap: 6px; }
-            .stat-info p { font-size: 13px; }
+            .dashboard-grid { gap: 4px; }
+            .stat-card { padding: 6px; gap: 4px; }
+            .stat-icon { width: 24px; height: 24px; font-size: 10px; }
+            .stat-info p { font-size: 12px; }
+            .stat-info h4 { font-size: 8px; }
             .effects-grid { gap: 4px; }
             .effect-card { border-radius: 8px; padding: 4px 2px; min-height: 42px; }
             .glass-card { padding: 8px; border-radius: 12px; }
@@ -1262,9 +1265,9 @@ HTML_CONTENT = """<!DOCTYPE html>
 
                 <!-- Empty state -->
                 <div id="detail-empty-state">
-                    <div class="empty-state-block" style="padding: 10px 16px;">
-                        <i class="fa-solid fa-microchip-ai" style="font-size: 24px;"></i>
-                        <p>No session loaded yet.<br>Record speech or select a session from history.</p>
+                    <div class="empty-state-block" style="padding: 4px 8px;">
+                        <i class="fa-solid fa-microchip-ai" style="font-size: 18px; margin-bottom: 2px;"></i>
+                        <p style="font-size: 11px;">No session loaded.<br>Record speech or select from history.</p>
                     </div>
                 </div>
 
